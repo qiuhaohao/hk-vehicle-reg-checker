@@ -72,6 +72,6 @@ You can use wildcards to specify multiple files, for example:
 #### Check multiple available registration marks
 This script is best used in combination with bash brace expansion to check multiple plates.
 ```sh
-python main.py --headless --skip-unavailable {A..Z}{A..Z}1234
+python main.py --skip-unavailable {A..Z}{A..Z}1234
 ```
 This checks the status of available registration marks from AA1234 to ZZ1234, saving results to "./output".
