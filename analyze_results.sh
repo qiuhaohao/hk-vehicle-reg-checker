@@ -1,24 +1,18 @@
 #!/bin/bash
 
-# Check if folder argument is provided
-if [ $# -ne 1 ]; then
-    echo "Error: Please provide a folder path" >&2
-    echo "Usage: $0 <folder_path>" >&2
-    exit 1
-fi
-
-# Check if folder exists
-if [ ! -d "$1" ]; then
-    echo "Error: Folder '$1' not found" >&2
+# Check if at least one file argument is provided
+if [ $# -lt 1 ]; then
+    echo "Error: Please provide at least one file path" >&2
+    echo "Usage: $0 <file_path> [<file_path> ...]" >&2
     exit 1
 fi
 
 # Print CSV header
 echo "plate,status,update_time"
 
-# Process each HTML file in the specified directory
-for file in "$1"/*.html; do
-    # Skip if no HTML files found
+# Process each file provided as an argument
+for file in "$@"; do
+    # Skip if file does not exist
     [ -e "$file" ] || continue
     
     # Extract plate number from filename

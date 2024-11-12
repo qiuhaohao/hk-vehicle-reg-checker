@@ -52,7 +52,7 @@ Arguments:
 
 After querying, analyze the results using:
 ```sh
-./analyze_results.sh output
+./analyze_results.sh <file_path> [<file_path> ...]
 ```
 
 This will generate a CSV with columns:
@@ -60,11 +60,18 @@ This will generate a CSV with columns:
 - `status`: Current status (available/reserved/allocated/processing/other)
 - `update_time`: Last check timestamp
 
+You can use wildcards to specify multiple files, for example:
+```sh
+./analyze_results.sh output/*
+./analyze_results.sh output/*1234.html
+./analyze_results.sh output/AB*.html
+```
+
 ### Examples
 
 #### Check multiple available registration marks
 This script is best used in combination with bash brace expansion to check multiple plates.
 ```sh
-python main.py --headless --output output_1234 --skip-unavailable {A..Z}{A..Z}1234
+python main.py --headless --skip-unavailable {A..Z}{A..Z}1234
 ```
-This checks the status of available registration marks from AA1234 to ZZ1234, saving results to "./output_1234".
+This checks the status of available registration marks from AA1234 to ZZ1234, saving results to "./output".
